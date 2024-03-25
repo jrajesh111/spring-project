@@ -1,0 +1,81 @@
+package com.sathya.orm.mapper;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.sathya.orm.Repository.ProductRepository;
+import com.sathya.orm.entity.Product;
+import com.sathya.orm.model.ProductDetails;
+
+@Component
+public class ProductClient implements CommandLineRunner
+{
+		@Autowired
+		ProductRepository productRepository;
+		
+		@Autowired
+		ProductMapper mapper;
+
+		@Override
+		public void run(String... args) throws Exception 
+		{
+			// model class data :having the values
+			
+			ProductDetails productDetails=new ProductDetails();
+			
+			productDetails.setProId(1);
+			productDetails.setProName("chintapandu");
+			productDetails.setProPrice(222);
+			
+			Product product=mapper.modelToEntityConversion(productDetails);
+			productRepository.save(product);		
+			
+			
+			ProductDetails p1=new ProductDetails();
+			p1.setProId(111);
+			p1.setProName("sugar");                                               
+			p1.setProPrice(120);
+			
+			ProductDetails p2=new ProductDetails();
+			p2.setProId(222);
+			p2.setProName("salt");
+			p2.setProPrice(12);
+			
+			List<ProductDetails> proDetails=List.of(p1,p2);
+			
+			//conmversion process
+			
+			List<Product> products=mapper.modelToEntityListConversion(proDetails);
+			productRepository.saveAll(products);
+			
+			
+			
+			Optional<Product> optional= productRepository.findById(111);		
+			if(optional.isPresent())
+			{	
+			System.out.println(optional);
+			}
+			else {
+				System.out.println("not present");
+			}
+			
+			long count= productRepository.count();
+			System.out.println(count);
+			
+			boolean status=productRepository.existsById(111);
+			System.out.println(status);
+			
+			//productRepository.deleteAll();
+			
+			productRepository.deleteById(111);
+			
+			List<Product> products2 = productRepository.findAll();
+			System.out.println(products2);
+					
+		}			
+		
+}

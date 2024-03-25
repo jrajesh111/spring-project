@@ -1,0 +1,11 @@
+package com.sathya.orm.mapper;
+
+public class ProductClient implements CommandLineRunner
+{
+		@Autowired
+		ProductRepository productRepository;
+		
+		@Autowired
+		ProductMapper mapper;
+		
+}

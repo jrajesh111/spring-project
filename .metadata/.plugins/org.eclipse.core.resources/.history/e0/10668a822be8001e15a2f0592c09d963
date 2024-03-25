@@ -1,0 +1,5 @@
+package com.sathya.springbootex.orm.entity;
+
+public class Person {
+
+}

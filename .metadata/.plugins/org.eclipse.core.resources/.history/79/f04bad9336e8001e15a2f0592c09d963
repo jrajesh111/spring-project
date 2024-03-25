@@ -1,0 +1,74 @@
+package com.sathya.springbootex.orm.mapper;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.sathya.springbootex.orm.Repository.PersonRepository;
+import com.sathya.springbootex.orm.entity.Person;
+import com.sathya.springbootex.orm.model.PersonDetails;
+@Component
+public class PersonClient implements CommandLineRunner
+{
+	
+	@Autowired
+	PersonRepository personRepository;
+	
+	@Autowired 
+	PersonMapper personMapper;	
+	@Override
+	public void run(String... args) throws Exception {
+		// model class data :having the values
+		
+			PersonDetails personDetails=new PersonDetails();
+			
+			personDetails.setPersonId(1);
+			personDetails.setFirstName("Rajesh");
+			personDetails.setLastName("jamlpur");
+			personDetails.setEmail("jrajesh@gmail.com");
+			personDetails.setPersonAge(20);
+					
+			//connvertion of model class data to entity
+			Person person=personMapper.modelToEntityConversion(personDetails);
+			personRepository.save(person);
+			
+			PersonDetails p1=new PersonDetails();
+			p1.setPersonId(2);
+			p1.setFirstName("jittu");
+			p1.setLastName("gouna");
+			p1.setEmail("jittu@mail.com");
+			p1.setPersonAge(21);
+			
+			PersonDetails p2=new PersonDetails();
+			p2.setPersonId(2);
+			p2.setFirstName("mahesh");
+			p2.setLastName("mademoni");
+			p2.setEmail("mahesh@gmail.com");
+			p2.setPersonAge(22);
+			
+			List<PersonDetails> perDetails=List.of(p1,p2);
+			
+			List<Person> persons=personMapper.modelToEntityListConversion(perDetails);
+			personRepository.saveAll(persons);
+		
+			
+			Optional<Person> optional= personRepository.findById(111);		
+			if(optional.isPresent())
+			{	
+			System.out.println(optional);
+			}
+			else {
+				System.out.println("not present");
+			}
+			
+			long count= personRepository.count();
+			System.out.println(count);
+			
+			
+			
+	}
+	
+}

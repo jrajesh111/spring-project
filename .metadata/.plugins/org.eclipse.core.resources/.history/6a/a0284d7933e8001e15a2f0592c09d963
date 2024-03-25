@@ -1,0 +1,55 @@
+package com.sathya.springbootex.orm.mapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.sathya.springbootex.orm.Repository.PersonRepository;
+import com.sathya.springbootex.orm.entity.Person;
+import com.sathya.springbootex.orm.model.PersonDetails;
+@Component
+public class PersonClient implements CommandLineRunner
+{
+	
+	@Autowired
+	PersonRepository personRepository;
+	
+	@Autowired 
+	PersonMapper personMapper;	
+	@Override
+	public void run(String... args) throws Exception {
+		// model class data :having the values
+		
+			PersonDetails personDetails=new PersonDetails();
+			
+			personDetails.setPersonId(1);
+			personDetails.setFirstName("Rajesh");
+			personDetails.setLastName("jamlpur");
+			personDetails.setEmail("jrajesh@gmail.com");
+			personDetails.setPersonAge(20);
+					
+			//connvertion of model class data to entity
+			Person person=personMapper.modelToEntityConversion(personDetails);
+			personRepository.save(person);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+}

@@ -1,0 +1,10 @@
+package com.sathya.springbootex.orm.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sathya.springbootex.orm.entity.Person;
+
+public interface PersonRepository  extends JpaRepository<Person, Integer>
+{
+	
+}

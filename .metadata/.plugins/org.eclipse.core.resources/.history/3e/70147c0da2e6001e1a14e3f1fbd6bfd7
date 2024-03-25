@@ -1,0 +1,9 @@
+package com.sathya.springbootex;
+
+public class Product
+{
+	private int proId;
+	private String proName;
+	private double proPrice;
+	
+}

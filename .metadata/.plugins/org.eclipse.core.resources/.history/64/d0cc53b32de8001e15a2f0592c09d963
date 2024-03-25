@@ -1,0 +1,5 @@
+package com.sathya.springbootex.orm.mapper;
+
+public class PersonClient {
+
+}

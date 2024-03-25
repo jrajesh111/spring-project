@@ -1,0 +1,27 @@
+package com.sathya.springbootex.orm.entity;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+public class Person 
+{
+	//Entity class
+	private int personId;
+	private String firstName;
+	private String lastNme;
+	private int personAge;
+	
+private LocalDateTime createAt;
+	
+	private String createBy;
+	
+	
+}

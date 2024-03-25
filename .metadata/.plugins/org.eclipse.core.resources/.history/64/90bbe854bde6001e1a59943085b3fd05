@@ -1,0 +1,6 @@
+package com.sathya.orm.Repository;
+
+public class ProductRepositoty 
+{
+	
+}
